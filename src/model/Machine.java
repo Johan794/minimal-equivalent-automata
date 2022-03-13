@@ -1,30 +1,54 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Machine {
-    private ArrayList<String> internalStates;
-    private ArrayList<String> inputAlphabet;
-    private ArrayList<String> outPutAlphabet;
+    private String initalSate;
+
+    private ArrayList<String> internalStates; // nombra los nodos
+    private ArrayList<String> inputAlphabet; // nombra la conexion con la arista,es decir, dice cuales son los nodos que se conecta
+    private ArrayList<String> transitions; // da el valor de a arista
     private String type;
+    //Los vertices son los estados
+    //las aristas las transiciones
+    //Se hace de esta manera para aprovechar las cualidades del grafo y poder hacer los algoritmos necesarios para obtener lo esparado
+    private Graph<String> finalStateMachie;
 
     
 
 
 
     /**
-     * @param internalStates
-     * @param inputAlphabet
-     * @param outPutAlphabet
+     * @param list
+     * @param list2
+     * @param list3
      * @param type
+     * Se asume que el estado inicial siempre es el prinero de la lista 
      */
-    public Machine(ArrayList<String> internalStates, ArrayList<String> inputAlphabet, ArrayList<String> outPutAlphabet,
-            String type) {
-        this.internalStates = internalStates;
-        this.inputAlphabet = inputAlphabet;
-        this.outPutAlphabet = outPutAlphabet;
+    public Machine(String type, String initalSate) {
         this.type = type;
+        inputAlphabet = new ArrayList<>();
+        internalStates = new ArrayList<>();
+        transitions = new ArrayList<>();
+        finalStateMachie = new Graph<>(true);
+        this.initalSate = initalSate;
     }
+
+     /**
+     * @return the initalSate
+     */
+    public String getInitalSate() {
+        return initalSate;
+    }
+    /**
+     * @param initalSate the initalSate to set
+     */
+    public void setInitalSate(String initalSate) {
+        this.initalSate = initalSate;
+    }
+
+
     /**
      * @return the internalStates
      */
@@ -53,13 +77,13 @@ public class Machine {
      * @return the outPutAlphabet
      */
     public ArrayList<String> getOutPutAlphabet() {
-        return outPutAlphabet;
+        return transitions;
     }
     /**
      * @param outPutAlphabet the outPutAlphabet to set
      */
     public void setOutPutAlphabet(ArrayList<String> outPutAlphabet) {
-        this.outPutAlphabet = outPutAlphabet;
+        this.transitions = outPutAlphabet;
     }
     /**
      * @return the type
@@ -74,6 +98,8 @@ public class Machine {
         this.type = type;
     }
     
+
+   
 
 
 
