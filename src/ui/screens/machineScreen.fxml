@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="799.0" prefWidth="1499.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="799.0" prefWidth="1344.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="26.0" text="GIVE THE PARAMS FOR YOUR :">
          <font>
@@ -21,7 +21,6 @@
          </font>
       </Label>
       <TextField fx:id="txtInputAlphabet" layoutX="225.0" layoutY="186.0" prefHeight="25.0" prefWidth="202.0" />
-      <TextField fx:id="txtOutputAlphabet" layoutX="225.0" layoutY="257.0" prefHeight="25.0" prefWidth="202.0" />
       <TextField fx:id="txtInternalStates" layoutX="225.0" layoutY="113.0" prefHeight="25.0" prefWidth="202.0" />
       <Label layoutX="29.0" layoutY="110.0" text="Q: internal states">
          <font>
@@ -33,19 +32,15 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="254.0" text="R: Output alphabet">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tbMachine" layoutX="534.0" layoutY="172.0" prefHeight="513.0" prefWidth="907.0">
+      <TableView fx:id="tbMachine" layoutX="520.0" layoutY="172.0" prefHeight="513.0" prefWidth="791.0">
         <columns>
-          <TableColumn fx:id="cStates" prefWidth="331.0" text="PRESEN STATE" />
-          <TableColumn fx:id="cTransitionsAndInputs" prefWidth="374.0" text="NEXT STATE" />
-            <TableColumn fx:id="cOutPutMoore" prefWidth="201.0" text="OUTPUT" />
+          <TableColumn fx:id="cStates" prefWidth="173.0" text="PRESEN STATE" />
+            <TableColumn fx:id="cStimulusResponse" prefWidth="235.0" text="STIMULUS/RESPONSE" />
+          <TableColumn fx:id="cInputs" prefWidth="153.0" text="INPUT" />
+            <TableColumn fx:id="cNextState" minWidth="0.0" prefWidth="229.0" text="NEXT STATE" />
         </columns>
       </TableView>
-      <Button layoutX="153.0" layoutY="447.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="226.0" text="SEND">
+      <Button layoutX="153.0" layoutY="447.0" mnemonicParsing="false" onAction="#fillTable" prefHeight="25.0" prefWidth="226.0" text="SEND">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>
@@ -55,11 +50,5 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="txInitalState" layoutX="225.0" layoutY="334.0" prefHeight="25.0" prefWidth="202.0" />
-      <Label layoutX="29.0" layoutY="331.0" text="q0: Inital State">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
