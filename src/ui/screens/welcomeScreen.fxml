@@ -8,27 +8,27 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="1271.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane prefHeight="391.0" prefWidth="662.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="799.0" prefWidth="1344.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="125.0" layoutY="141.0" prefHeight="45.0" prefWidth="394.0" text="PLEASE SELECT THE MACHINE YOU WANT TO WORK WITH" textAlignment="CENTER">
+            <Label layoutX="413.0" layoutY="213.0" prefHeight="45.0" prefWidth="394.0" text="PLEASE SELECT THE MACHINE YOU WANT TO WORK WITH" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rbMealy" layoutX="152.0" layoutY="215.0" mnemonicParsing="false" text="Mealy Machine">
+            <RadioButton fx:id="rbMealy" layoutX="432.0" layoutY="329.0" mnemonicParsing="false" text="Mealy Machine">
                <toggleGroup>
                   <ToggleGroup fx:id="machine" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbMoore" layoutX="343.0" layoutY="215.0" mnemonicParsing="false" text="Moore Machine" toggleGroup="$machine" />
-            <Label layoutX="176.0" layoutY="32.0" text="WELCOME!">
+            <RadioButton fx:id="rbMoore" layoutX="625.0" layoutY="329.0" mnemonicParsing="false" text="Moore Machine" toggleGroup="$machine" />
+            <Label layoutX="448.0" layoutY="93.0" text="WELCOME!">
                <font>
                   <Font name="Comic Sans MS Bold" size="44.0" />
                </font>
             </Label>
-            <Button layoutX="176.0" layoutY="314.0" mnemonicParsing="false" onAction="#changeScreen" prefHeight="25.0" prefWidth="272.0" text="GO!">
+            <Button layoutX="448.0" layoutY="468.0" mnemonicParsing="false" onAction="#changeScreen" prefHeight="25.0" prefWidth="272.0" text="GO!">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
                </font>

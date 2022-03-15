@@ -10,6 +10,7 @@ public class Machine {
     private ArrayList<String> inputAlphabet; // nombra la conexion con la arista,es decir, dice cuales son los nodos que se conecta
     private ArrayList<String> transitions; // da el valor de a arista
     private String type;
+    private ArrayList<MachineTransition> machineTransitions;
     //Los vertices son los estados
     //las aristas las transiciones
     //Se hace de esta manera para aprovechar las cualidades del grafo y poder hacer los algoritmos necesarios para obtener lo esparado
@@ -32,6 +33,7 @@ public class Machine {
         internalStates = new ArrayList<>();
         transitions = new ArrayList<>();
         finalStateMachie = new Graph<>(true);
+        machineTransitions = new ArrayList<>();
         this.initalSate = initalSate;
     }
 
@@ -97,6 +99,30 @@ public class Machine {
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     * @return the machineTransitions
+     */
+    public ArrayList<MachineTransition> getMachineTransitions() {
+        return machineTransitions;
+    }
+
+    /**
+     * @param machineTransitions the machineTransitions to set
+     */
+    public void setMachineTransitions() {
+        String []aux = null;
+        for (int i = 0; i < internalStates.size(); i++) {
+            aux =  inputAlphabet.get(i).split("->");
+            
+            machineTransitions.add(new MachineTransition(internalStates.get(i), transitions.get(i),aux[1]));
+            System.out.println("se crea la MachimeTransition: "+internalStates.get(i)+" "+transitions.get(i)+" "+aux[1]);
+        }
+       
+    }
+
+
+    
     
 
    
