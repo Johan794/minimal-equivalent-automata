@@ -113,6 +113,7 @@ public class Machine {
     public void setMachineTransitions() {
         String []aux = null;
         for (int i = 0; i < internalStates.size(); i++) {
+            
             aux =  inputAlphabet.get(i).split("->");
             
             machineTransitions.add(new MachineTransition(internalStates.get(i), transitions.get(i),aux[1]));
