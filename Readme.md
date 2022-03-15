@@ -13,7 +13,7 @@
 
 ## ***Instructions***📓
 
-🔸 - **!Here Link!: [Intrunstions Documentation](https://github.com/Johan794/minimal-equivalent-automata/blob/master/docs/INSTRUCCIONES%20PARA%20EL%20USO%20DEL%20PROGRAMA.pdf)**
+🔸 - **!Here Link!: [instructions Documentation](https://github.com/Johan794/minimal-equivalent-automata/blob/master/docs/INSTRUCCIONES%20PARA%20EL%20USO%20DEL%20PROGRAMA.pdf)**
 
 
 
