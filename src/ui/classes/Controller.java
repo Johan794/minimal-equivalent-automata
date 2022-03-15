@@ -217,13 +217,15 @@ public class Controller {
                 if (result1.isPresent()){
                      current.getInternalStates().add(result1.get()); 
                     //aca selecciona el input
-                    dialog1.setContentText("Now write the input for the next state");
+                    dialog1.setHeaderText("Please write the input for the next state");
+                    dialog1.setContentText(null);
                     result1 = dialog1.showAndWait();
                     if(result1.isPresent()){
                         current.getOutPutAlphabet().add(result1.get());
 
                          //aca selecciona el estado al que llega    
                         dialog.setTitle("Let us build the machine");
+                        dialog.setHeaderText("Now the nex state");
                         dialog.setContentText("Select the next state:");
                     
                         result = dialog.showAndWait();
