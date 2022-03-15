@@ -25,8 +25,7 @@
 ## ***Authors*** ✒️
 
 <p align="left">
-      <a href="https://github.com/Johan794" target="_blank"> <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/71047565?v=4&h=60&w=60&fit=cover&mask=circle?v=4&h=60&w=60&fit=cover&mask=circle"></a>
-  <a href="https://github.com/CamiloCJ09" target="_blank"> <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/53228651?v=4&h=60&w=60&fit=cover&mask=circle"></a>
+    
 </p>
 
 ---
