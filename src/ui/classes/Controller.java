@@ -179,7 +179,8 @@ public class Controller {
         Optional<String> result; //de la entrada del siguiente estado que seleccionó
 
         if(typeOfmachine.equals("Mealy Machine")){
-            current.setInputAlphabet((ArrayList<String>) Arrays.asList(inputAlphabet));
+            ArrayList<String> inAlphabet = new ArrayList<String>(Arrays.asList(inputAlphabet));
+            current.setInputAlphabet(inAlphabet);
 
             //Aca ingresa la parte de estumulo/respuesta
             dialog1.setHeaderText("Please write the stimulus/response behavior of the machine");
@@ -196,13 +197,16 @@ public class Controller {
                      result = dialog.showAndWait();
                     if (result.isPresent()){
                        current.getInputAlphabet().add(internalStates[index]+"->"+result.get());// estado en el que está -> al que seleccionó
-                       //eso puede ayudar para saber hacia donde va despues de la transicion 
+                       current.getTransitions().add(internalStates[index]+"->"+result.get());
+                        //eso puede ayudar para saber hacia donde va despues de la transicion
                     }
 
                 }
 
             }
-
+            System.out.println(Arrays.asList(current.getInputAlphabet()).toString());
+            System.out.println(Arrays.asList(current.getTransitions().toString()));
+            current.conexumMachine();
             //Aca es donde se supone que se llenan las tablas cuando es de Mealy
 
 

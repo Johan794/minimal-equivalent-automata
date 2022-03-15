@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="799.0" prefWidth="1344.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="28.0" layoutY="26.0" text="GIVE THE PARAMS FOR YOUR :">
+         <font>
+            <Font name="Comic Sans MS Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="selectedMachine" layoutX="487.0" layoutY="4.0" text="..">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtInputAlphabet" layoutX="225.0" layoutY="186.0" prefHeight="25.0" prefWidth="202.0" />
+      <TextField fx:id="txtInternalStates" layoutX="225.0" layoutY="113.0" prefHeight="25.0" prefWidth="202.0" />
+      <Label layoutX="29.0" layoutY="110.0" text="Q: internal states">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="183.0" text="S: input alphabet">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbMachine" layoutX="520.0" layoutY="172.0" prefHeight="513.0" prefWidth="791.0">
+        <columns>
+          <TableColumn fx:id="cStates" prefWidth="173.0" text="PRESEN STATE" />
+            <TableColumn fx:id="cStimulusResponse" prefWidth="235.0" text="STIMULUS/RESPONSE" />
+          <TableColumn fx:id="cInputs" prefWidth="153.0" text="INPUT" />
+            <TableColumn fx:id="cNextState" minWidth="0.0" prefWidth="229.0" text="NEXT STATE" />
+        </columns>
+      </TableView>
+      <Button layoutX="153.0" layoutY="447.0" mnemonicParsing="false" onAction="#fillTable" prefHeight="25.0" prefWidth="226.0" text="SEND">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="86.0" layoutY="528.0" mnemonicParsing="false" onAction="#outPut" text="Get the connected automaton and minimum equivalent.">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
