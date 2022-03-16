@@ -160,6 +160,7 @@ public class Controller {
         String [] internalStates = txtInternalStates.getText().split(",");
         String [] inputAlphabet = txtInputAlphabet.getText().split(",");
         current = new Machine(typeOfmachine,"->"+internalStates[0]);
+        current.setAlphabetSize(inputAlphabet.length);
      
 
 
@@ -214,32 +215,36 @@ public class Controller {
             //Aca es donde se supone que se llenan las tablas cuando es de Mealy
            
         }else{
-
-         
-            dialog1.setHeaderText("Please write the state/output behavior of the machine");
+            String container = "";
             for (int index = 0; index < internalStates.length; index++) {
+                
+                 dialog1.setHeaderText("Please write the state/output behavior of the machine");
                 dialog1.setContentText("For the state "+internalStates[index]+" Please enter it following the state/output format :");
                 result1 = dialog1.showAndWait();
                 if (result1.isPresent()){
-                     current.getInternalStates().add(result1.get()); 
-                    //aca selecciona el input
-                    dialog1.setHeaderText("Please write the input for the next state");
-                    dialog1.setContentText(null);
-                    result1 = dialog1.showAndWait();
-                    if(result1.isPresent()){
-                        current.getOutPutAlphabet().add(result1.get());
-
-                         //aca selecciona el estado al que llega    
-                        dialog.setTitle("Let us build the machine");
-                        dialog.setHeaderText("Now the nex state");
-                        dialog.setContentText("Select the next state:");
                     
-                        result = dialog.showAndWait();
-                        if (result.isPresent()){
-                        current.getInputAlphabet().add(internalStates[index]+"->"+result.get());// estado en el que está -> al que seleccionó
-                        //eso puede ayudar para saber hacia donde va despues de la transicion 
+                    container = result1.get();
+                    //aca selecciona el input
+                    for (int i = 0; i <inAlphabet.size() ; i++) {
+                        dialog1.setHeaderText("Please write"+inAlphabet.get(i)+" as input of the next state");
+                        dialog1.setContentText(null);
+                        result1 = dialog1.showAndWait();
+                        if(result1.isPresent()){
+                            current.getOutPutAlphabet().add(result1.get());
+    
+                             //aca selecciona el estado al que llega    
+                            dialog.setTitle("Let us build the machine");
+                            dialog.setHeaderText("Now the nex state");
+                            dialog.setContentText("Select the next state:");
+                        
+                            result = dialog.showAndWait();
+                            if (result.isPresent()){
+                            current.getInputAlphabet().add(container+"->"+result.get());// estado en el que está -> al que seleccionó
+                            //eso puede ayudar para saber hacia donde va despues de la transicion 
+                            }
                         }
                     }
+                   
                      
 
                 }
@@ -248,7 +253,9 @@ public class Controller {
 
                //Aca es donde se supone que se llenan las tablas cuando es de Moore
 
-
+               System.out.println(Arrays.asList(current.getInputAlphabet()).toString());
+               System.out.println(Arrays.asList(current.getTransitions().toString()));
+               current.conexumMachine();
            
            
         }
@@ -271,7 +278,7 @@ public class Controller {
 
             }else{
                 System.out.println("wwwwwww");
-                cInputs.setCellValueFactory(new PropertyValueFactory<MachineTransition,String>("stimulusResponse"));
+                cInputs.setCellValueFactory(new PropertyValueFactory<>("stimulusResponse"));
                 tbMachine.refresh(); 
 
             }

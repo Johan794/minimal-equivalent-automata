@@ -11,6 +11,7 @@ public class Machine {
     private ArrayList<String> transitions; // da el valor de a arista
     private String type;
     private ArrayList<MachineTransition> machineTransitions;
+    private int alphabetSize;
     //Los vertices son los estados
     //las aristas las transiciones
     //Se hace de esta manera para aprovechar las cualidades del grafo y poder hacer los algoritmos necesarios para obtener lo esparado
@@ -35,6 +36,7 @@ public class Machine {
         finalStateMachie = new Graph<>(true);
         machineTransitions = new ArrayList<>();
         this.initalSate = initalSate;
+        alphabetSize = 0;
     }
 
     public void conexumMachine(){
@@ -183,13 +185,65 @@ public class Machine {
         return machineTransitions;
     }
 
+    /**
+     * @param machineTransitions the machineTransitions to set
+     */
+    public void setMachineTransitions(ArrayList<MachineTransition> machineTransitions) {
+        this.machineTransitions = machineTransitions;
+    }
+
+    /**
+     * @return the alphabetSize
+     */
+    public int getAlphabetSize() {
+        return alphabetSize;
+    }
+
+    /**
+     * @param alphabetSize the alphabetSize to set
+     */
+    public void setAlphabetSize(int alphabetSize) {
+        this.alphabetSize = alphabetSize;
+    }
+
     public void setMachineTransitions() {
         String []aux = null;
+       // int count = internalStates.size()*alphabetSize;
+      // int count = 0;
+        /*
         for (int i = 0; i < (inputAlphabet.size()); i++) {
             aux =  inputAlphabet.get(i).split("->");
             machineTransitions.add(new MachineTransition(internalStates.get(i), transitions.get(i),aux[1]));
             System.out.println("se crea la MachimeTransition: "+internalStates.get(i)+" "+transitions.get(i)+" "+aux[1]);
         }
+
+          System.out.println("tamaño del alfabeto "+internalStates.size());
+        System.out.println("Tamaño "+alphabetSize);
+       // System.out.println();
+        
+
+        for (int i = 0; i < (internalStates.size()); i++) {
+            aux =  inputAlphabet.get(i).split("->");
+            for (int index = 0; index <=alphabetSize; index++) {
+                machineTransitions.add(new MachineTransition(internalStates.get(index), transitions.get(index),aux[1]));
+                System.out.println("se crea la MachimeTransition: "+internalStates.get(index)+" "+transitions.get(index)+" "+aux[1]);
+            }
+           
+        }
+
+        
+        */
+
+        for (int index = 0; index <inputAlphabet.size(); index++) {
+            aux =  inputAlphabet.get(index).split("->");
+            machineTransitions.add(new MachineTransition(aux[0], transitions.get(index),aux[1]));
+        }
+
+        
+
+      
+
+      
        
     }
 
