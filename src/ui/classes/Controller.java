@@ -25,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Machine;
+import model.MachineTransition;
 
 public class Controller {
 
@@ -34,23 +35,23 @@ public class Controller {
     private ToggleGroup machine;
 
     @FXML
-    private TableColumn<String,String>  cNextState;
+    private TableColumn<MachineTransition,String>  cNextState;
 
     @FXML
-    private TableColumn<String,String> cStates;
+    private TableColumn<MachineTransition,String> cStates;
 
     @FXML
-    private TableColumn<String,String>  cInputs;
+    private TableColumn<MachineTransition,String>  cInputs;
 
     @FXML
-    private TableColumn<String, String> cStimulusResponse;
+    private TableColumn<MachineTransition,String> cStimulusResponse;
 
 
     @FXML
     private Label selectedMachine;
 
     @FXML
-    private TableView<Machine> tbMachine;
+    private TableView<MachineTransition> tbMachine;
 
     @FXML
     private TextField txInitalState;
@@ -72,19 +73,19 @@ public class Controller {
 
 
     @FXML
-    private TableColumn<String, String> cInputs_outPut;
+    private TableColumn<MachineTransition,String> cInputs_outPut;
 
     @FXML
-    private TableColumn<String, String> cNextState_outPut;
+    private TableColumn<MachineTransition,String> cNextState_outPut;
 
     @FXML
-    private TableColumn<String, String> cStates_outPut;
+    private TableColumn<MachineTransition,String> cStates_outPut;
 
     @FXML
-    private TableColumn<String, String> cStimulusResponse_outPut;
+    private TableColumn<MachineTransition,String> cStimulusResponse_outPut;
 
     @FXML
-    private TableView<String> tbMachine_outPut;
+    private TableView<MachineTransition> tbMachine_outPut;
 
 
 
@@ -177,42 +178,40 @@ public class Controller {
 
         Optional<String> result1; // de la entrada estinulo/respuesta
         Optional<String> result; //de la entrada del siguiente estado que seleccionó
-
+        ArrayList<String> inAlphabet = new ArrayList<String>(Arrays.asList(inputAlphabet));
         if(typeOfmachine.equals("Mealy Machine")){
-            ArrayList<String> inAlphabet = new ArrayList<String>(Arrays.asList(inputAlphabet));
-            current.setInputAlphabet(inAlphabet);
+
+            //current.setInputAlphabet(inAlphabet);
+          //  current.setInputAlphabet((ArrayList<String>) Arrays.asList(inputAlphabet));
+            current.setInternalStates(new ArrayList<>(Arrays.asList(internalStates)));
 
             //Aca ingresa la parte de estumulo/respuesta
             dialog1.setHeaderText("Please write the stimulus/response behavior of the machine");
             for (int index = 0; index < internalStates.length; index++) {
-                dialog1.setContentText("For the state "+internalStates[index]+" Please enter it following the stimulus/response fromat :");
-                result1 = dialog1.showAndWait();
-                if (result1.isPresent()){
-                     current.getOutPutAlphabet().add(result1.get()); //llama al arreglo transitions es que no se hizo refractor al get :(
-                      //aca selecciona el estado al que llega    
-                   
-                    dialog.setHeaderText("Now the nex state");
-                     dialog.setContentText("Select the next state:");
-                
-                     result = dialog.showAndWait();
-                    if (result.isPresent()){
-                       current.getInputAlphabet().add(internalStates[index]+"->"+result.get());// estado en el que está -> al que seleccionó
-                       current.getTransitions().add(internalStates[index]+"->"+result.get());
-                        //eso puede ayudar para saber hacia donde va despues de la transicion
+                for (int i = 0; i <inAlphabet.size() ; i++) {
+                    dialog1.setContentText("For the state "+internalStates[index]+" and the simbol "+inAlphabet.get(i)+" Please enter the following the stimulus/response format :");
+                    result1 = dialog1.showAndWait();
+                    if (result1.isPresent()){
+                        current.getTransitions().add(result1.get()); //llama al arreglo transitions es que no se hizo refractor al get :(
+                        //aca selecciona el estado al que llega
+
+                        dialog.setHeaderText("Now the nex state");
+                        dialog.setContentText("Select the next state:");
+
+                        result = dialog.showAndWait();
+                        if (result.isPresent()){
+                            current.getInputAlphabet().add(internalStates[index]+"->"+result.get());// estado en el que está -> al que seleccionó
+                            //  current.getTransitions().add(internalStates[index]+"->"+result.get());
+                            //eso puede ayudar para saber hacia donde va despues de la transicion
+                        }
+
                     }
-
                 }
-
             }
             System.out.println(Arrays.asList(current.getInputAlphabet()).toString());
             System.out.println(Arrays.asList(current.getTransitions().toString()));
             current.conexumMachine();
             //Aca es donde se supone que se llenan las tablas cuando es de Mealy
-
-
-
-            
-            
            
         }else{
 
@@ -251,6 +250,32 @@ public class Controller {
            
            
         }
+
+        current.setMachineTransitions();
+        loadtable(typeOfmachine);
+    }
+
+
+    public void loadtable(String type){
+        ObservableList<MachineTransition> observableList;
+        observableList = FXCollections.observableArrayList(current.getMachineTransitions());
+        tbMachine.setItems(observableList);
+        cStates.setCellValueFactory(new PropertyValueFactory<>("presentState"));
+        cNextState.setCellValueFactory((new PropertyValueFactory<>("nextState")));
+            if(type.equals("Mealy Machine")){
+                System.out.println("Aaaaa");
+                cStimulusResponse.setCellValueFactory(new PropertyValueFactory<>("stimulusResponse"));
+                tbMachine.refresh(); 
+
+            }else{
+                System.out.println("wwwwwww");
+                cInputs.setCellValueFactory(new PropertyValueFactory<MachineTransition,String>("stimulusResponse"));
+                tbMachine.refresh(); 
+
+            }
+
+
+
     }
 
 
